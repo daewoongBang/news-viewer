@@ -3,11 +3,16 @@ import React, { useState } from 'react';
 function App() {
   const [data, setData] = useState(null);
   const onClick = async () => {
-    await fetch('https://jsonplaceholder.typicode.com/posts/1')
+    await fetch(
+      'http://newsapi.org/v2/top-headlines?country=kr&apiKey=1f1fb2150ba04dc6bc38714164b6cc1d'
+    )
       .then(response => response.json())
       .then(json => {
         setData(json);
         window.console.log(json);
+      })
+      .catch(error => {
+        window.console.log(error);
       });
   };
 
