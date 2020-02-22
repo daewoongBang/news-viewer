@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import NewsList from './components/NewsList';
 
 function App() {
   const [data, setData] = useState(null);
@@ -28,6 +29,7 @@ function App() {
           readOnly={true}
         />
       )}
+      <NewsList />
     </div>
   );
 }
