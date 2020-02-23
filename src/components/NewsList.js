@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
 import NewsItem from './NewsItem';
+import { ApiNews } from '../apis/index';
 
 const NewsListBlock = styled.div`
   box-sizing: border-box;
@@ -15,19 +16,33 @@ const NewsListBlock = styled.div`
   }
 `;
 
-const sampleArticle = {
-  title: 'title',
-  description: 'desc',
-  url: 'https://google.com',
-  urlToImage: 'https://via.placeholder.com/60'
-};
-
 const NewsList = () => {
-  return (
+  const [articles, setArticles] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  const requestTopHeadlines = () => {
+    setLoading(true);
+    ApiNews.requestTopHeadlines()
+      .then(result => {
+        setArticles(result);
+      })
+      .catch(error => {
+        window.console.log(error);
+      });
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    requestTopHeadlines();
+  }, []);
+
+  return loading ? (
+    <NewsListBlock>대기 중...</NewsListBlock>
+  ) : !articles ? null : (
     <NewsListBlock>
-      <NewsItem article={sampleArticle} />
-      <NewsItem article={sampleArticle} />
-      <NewsItem article={sampleArticle} />
+      {articles.map(article => (
+        <NewsItem key={article.url} article={article} />
+      ))}
     </NewsListBlock>
   );
 };
