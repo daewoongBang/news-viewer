@@ -1,4 +1,4 @@
-export const requestTopHeadlines = async category => {
+export const requestArticles = async category => {
   const query = category === 'all' ? '' : `&category=${category}`;
 
   return await fetch(

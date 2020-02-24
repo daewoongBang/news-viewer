@@ -9,6 +9,7 @@
 - fetch 사용
 - https://newsapi.org/
 - https://newsapi.org/s/south-korea-news-api
+- useEffect에 등록하는 함수는 async로 작성하면 안된다. 함수 내부에 async 함수를 따로 만들어주어야 한다.
 
 ### Style
 

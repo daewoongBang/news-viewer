@@ -20,9 +20,9 @@ const NewsList = ({ category }) => {
   const [articles, setArticles] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const requestTopHeadlines = category => {
+  const requestArticles = category => {
     setLoading(true);
-    ApiNews.requestTopHeadlines(category)
+    ApiNews.requestArticles(category)
       .then(result => {
         setArticles(result);
       })
@@ -33,7 +33,7 @@ const NewsList = ({ category }) => {
   };
 
   useEffect(() => {
-    requestTopHeadlines(category);
+    requestArticles(category);
   }, [category]);
 
   return loading ? (
