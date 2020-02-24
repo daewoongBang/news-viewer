@@ -16,13 +16,13 @@ const NewsListBlock = styled.div`
   }
 `;
 
-const NewsList = () => {
+const NewsList = ({ category }) => {
   const [articles, setArticles] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const requestTopHeadlines = () => {
+  const requestTopHeadlines = category => {
     setLoading(true);
-    ApiNews.requestTopHeadlines()
+    ApiNews.requestTopHeadlines(category)
       .then(result => {
         setArticles(result);
       })
@@ -33,8 +33,8 @@ const NewsList = () => {
   };
 
   useEffect(() => {
-    requestTopHeadlines();
-  }, []);
+    requestTopHeadlines(category);
+  }, [category]);
 
   return loading ? (
     <NewsListBlock>대기 중...</NewsListBlock>

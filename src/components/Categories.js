@@ -51,13 +51,10 @@ const Category = styled.div`
   text-decoration: none;
   color: inherit;
   padding-bottom: 0.25rem;
+  margin-right: 1rem;
 
   &:hover {
     color: #495057;
-  }
-
-  :not(:first-child) {
-    margin-left: 1rem;
   }
 
   ${props =>
